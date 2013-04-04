@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  = image_tag(@event.picture_url) if @event.picture?
+
+p
+  strong Title:
+  = @event.title
+p
+  strong Description:
+  = @event.description
+p
+  strong Category:
+  = @event.category
+p
+  strong Seats:
+  = @event.seats
+p
+  strong Entrance:
+  = @event.entrance
+p
+  strong Date:
+  = @event.date
+p
+  strong Time:
+  = @event.time
+
+= link_to 'Edit', edit_event_path(@event)
+'|
+= link_to 'Back', events_path
