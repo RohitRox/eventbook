@@ -11,6 +11,9 @@ gem 'mongoid'
 # auth
 gem 'devise'
 
+# templating
+gem 'slim'
+
 group :development do
   gem 'pry-rails'
 end
