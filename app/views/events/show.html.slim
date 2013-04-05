@@ -24,7 +24,10 @@ p
 p
   strong Time:
   = @event.time
-
+p
+  strong Attendies:
+  strong
+    = @attendies
 = link_to 'Edit', edit_event_path(@event)
 '|
 = link_to 'Back', events_path

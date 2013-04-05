@@ -13,6 +13,11 @@ class Ticket
   ATTENDED = 'attended'
   EXPIRED = 'expired'
 
+  scope :booked, where(:status => BOOKED)
+  scope :cancelled, where(:status => CANCELLED)
+  scope :attended, where(:status => ATTENDED)
+  scope :expired, where(:status => EXPIRED)
+
   stateflow do
 
     state_column :status
