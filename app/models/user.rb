@@ -26,6 +26,7 @@ class User
   field :admin, type: Boolean, default: false
 
   has_many :events, class_name: 'Event', inverse_of: :organiser
+  has_many :bookings
 
   ## Confirmable
   # field :confirmation_token,   :type => String

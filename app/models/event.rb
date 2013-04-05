@@ -11,6 +11,6 @@ class Event
   attr_accessible :picture, :title, :description, :category, :seats, :entrance, :date, :time
   mount_uploader :picture, PictureUploader
 
-  belongs_to :organiser, class_name: 'User', inverse_of: :events
-
+  belongs_to :organiser, class_name: 'User'
+  has_many :bookings
 end
