@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -27,6 +29,7 @@ class User
 
   has_many :events, class_name: 'Event', inverse_of: :organiser
   has_many :bookings
+  has_many :tickets
 
   ## Confirmable
   # field :confirmation_token,   :type => String

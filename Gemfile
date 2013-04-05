@@ -17,6 +17,8 @@ gem 'slim-rails'
 
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
+gem 'stateflow'
+
 group :development do
   gem 'pry-rails'
 end
