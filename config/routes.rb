@@ -6,8 +6,17 @@ Eventbook::Application.routes.draw do
     namespace :api do
       namespace :v1  do
         resources :tokens,:only => [:create, :destroy]
-        resources :events
-        resources :users
+        resources :events do
+          member do
+            put :book
+          end
+        end
+        resources :users do
+          member do
+            get :tickets
+            get :bookings
+          end
+        end
       end
     end
 
