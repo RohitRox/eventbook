@@ -61,5 +61,13 @@ module Eventbook
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.middleware.use Rack::Cors do
+        allow do
+            origins '*'
+            # location of our API
+            resource '/api/v1/*', :headers => :any, :methods => [:get, :post, :options, :put]
+        end
+    end
+
   end
 end

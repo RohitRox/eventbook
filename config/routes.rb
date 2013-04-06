@@ -3,22 +3,22 @@ Eventbook::Application.routes.draw do
 
   resources :events
 
-    namespace :api do
-      namespace :v1  do
-        resources :tokens,:only => [:create, :destroy]
-        resources :events do
-          member do
-            put :book
-          end
+  namespace :api do
+    namespace :v1  do
+      resources :tokens,:only => [:create, :destroy]
+      resources :events do
+        member do
+          post :book
         end
-        resources :users do
-          member do
-            get :tickets
-            get :bookings
-          end
+      end
+      resources :users do
+        member do
+          get :tickets
+          get :bookings
         end
       end
     end
+  end
 
 
   # The priority is based upon order of creation:

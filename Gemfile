@@ -19,6 +19,8 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem 'stateflow'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development do
   gem 'pry-rails'
 end
