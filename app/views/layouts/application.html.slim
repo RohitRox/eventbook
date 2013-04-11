@@ -1,0 +1,9 @@
+doctype
+html lang="en"
+  = render "/shared/head"
+  body
+    = render "/shared/header"
+    .container.main
+        .row-fluid
+          = yield
+    = javascript_include_tag "application", :media => "all"

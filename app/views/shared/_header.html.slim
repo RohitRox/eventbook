@@ -1,0 +1,54 @@
+.container
+  .header.row
+    .span12
+      .navbar
+        .navbar-inner
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          h1
+            a.brand href="/"
+          .nav-collapse.collapse
+            ul.nav.pull-right
+              li.current-page
+                a href="/"
+                  i.icon-home
+                  br Home
+              li
+                a href="portfolio.html"
+                  i.icon-star
+                  br Events
+              li
+                a href="#"
+                  i.icon-comments
+                  br How It Works
+              li
+                a href="services.html"
+                  i.icon-tasks
+                  br Pricing
+              li
+                a href="about.html"
+                  i.icon-user
+                  br About Us
+              li
+                a href="contact.html"
+                  i.icon-envelope-alt
+                  br Contact
+.container.below-bar
+  .row
+    .span9
+      form.pull-left.with-pad action=""
+        .input-append
+          input#appendedInputButton.span3 placeholder="Find Events" type="text"
+          button.btn type="button" Search
+    .span3
+      form.pull-right.with-pad action=""
+        .input-append.input-prepend
+          - if user_signed_in?
+            a.btn.btn-info href="/events" Create A New Event
+            a.btn.btn-info href="/events" My Events
+            =link_to 'Sign Out', '/users/sign_out', class: "btn btn-danger", method: :delete
+          - else
+            a.btn.btn-info href="/users/sign_in" Sign In
+            a.btn.btn-success href="/users/sign_up" Create A New Account
