@@ -46,7 +46,7 @@
       form.pull-right.with-pad action=""
         .input-append.input-prepend
           - if user_signed_in?
-            a.btn.btn-info href="/events" Create A New Event
+            a.btn.btn-info href="/events/new" Create A New Event
             a.btn.btn-info href="/events" My Events
             =link_to 'Sign Out', '/users/sign_out', class: "btn btn-danger", method: :delete
           - else

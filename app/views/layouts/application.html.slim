@@ -3,7 +3,9 @@ html lang="en"
   = render "/shared/head"
   body
     = render "/shared/header"
+    .container.flash-wrap
+      = bootstrap_flash
     .container.main
-        .row-fluid
-          = yield
+      = yield
+    = render "/shared/footer"
     = javascript_include_tag "application", :media => "all"

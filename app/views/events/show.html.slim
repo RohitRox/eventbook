@@ -1,33 +1,35 @@
-p#notice = notice
-
-p
-  = image_tag(@event.picture_url) if @event.picture?
-
-p
-  strong Title:
+h1
   = @event.title
-p
-  strong Description:
-  = @event.description
-p
-  strong Category:
-  = @event.category
-p
-  strong Seats:
-  = @event.seats
-p
-  strong Entrance:
-  = @event.entrance
-p
-  strong Date:
-  = @event.date
-p
-  strong Time:
-  = @event.time
-p
-  strong Attendies:
-  strong
-    = @attendies
-= link_to 'Edit', edit_event_path(@event)
-'|
-= link_to 'Back', events_path
+
+.row-fluid
+  .span4
+    a.thumbnail href=""
+      = image_tag(@event.picture_url) if @event.picture?
+  .span8
+    table.table.table-bordered
+      tr
+        th
+          strong Date Time:
+          = @event.date
+          ' |
+          =@event.time
+        th
+          strong Entrance:
+          = @event.entrance
+    p.well
+      = @event.description
+    table.table.table-bordered
+      tr
+        th
+          strong Category:
+          = @event.category
+        th
+          strong Seats:
+          = @event.seats
+    p
+      strong Attendies:
+      strong
+        = @attendies
+= link_to 'Edit', edit_event_path(@event), class: 'btn'
+| &nbsp;
+= link_to 'Back', events_path, class: 'btn'
