@@ -1,42 +1,63 @@
-.span12
-  = form_for @event do |f|
-    - if @event.errors.any?
-      #error_explanation
-        h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-        ul
-          - @event.errors.full_messages.each do |message|
-            li = message
-    .row-fluid
-      .span6
-        .field
-          = f.label :title
-          = f.text_field :title
-        .field
-          = f.label :description
-          = f.text_area :description, rows: '10', cols: '44'
-        .field
-          = f.label :picture
-          = f.file_field :picture
-        .field
-          br
-          = f.submit 'Save', class: 'btn'
-          | &nbsp;
-          = link_to 'Back', events_path, class: 'btn'
+script src="http://maps.google.com/maps/api/js?sensor=false"
+= form_for @event do |f|
+  - if @event.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+      ul
+        - @event.errors.full_messages.each do |message|
+          li = message
+  .row-fluid
+    .span6
+      .field
+        = f.label :title
+        = f.text_field :title
+      .field
+        = f.label :description
+        = f.text_area :description, rows: '10', cols: '44'
+      .field
+        = f.label :picture
+        = f.file_field :picture
 
-      .span4
-        .field
-          = f.label :category
-          = f.text_field :category
-        .field
-          = f.label :seats
-          = f.number_field :seats
-        .field
-          = f.label :entrance
-          = f.text_field :entrance
-        .field
-          = f.label :date
-          = f.date_select :date
-        .field
-          = f.label :time
-          = f.text_field :time
+    .span4
+      .field
+        = f.label :category
+        = f.text_field :category
+      .field
+        = f.label :seats
+        = f.number_field :seats
+      .field
+        = f.label :entrance
+        = f.text_field :entrance
+      .field
+        = f.label :date
+        = f.date_select :date
+      .field
+        = f.label :time
+        = f.text_field :time
+    
+  .row-fluid
+    .span4
+      .field
+        label Address :
+        =f.text_field :address
+        br/
+        label Locality:
+        =f.text_field :locality
+        br/
+        label Country:
+        =f.text_field :country
+        br/
+        label Lat:
+        =f.text_field :latt
+        br/
+        label Lng:
+        =f.text_field :long
+        br/
+      .field
+        br
+        = f.submit 'Save', class: 'btn'
+        | &nbsp;
+        = link_to 'Back', events_path, class: 'btn'
+    .span5
+      #map
 

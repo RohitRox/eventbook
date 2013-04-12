@@ -10,7 +10,15 @@ class Event
   field :date, type: Date
   field :time, type: String
 
-  attr_accessible :picture, :title, :description, :category, :seats, :entrance, :date, :time
+  field :address, type: String
+  field :locality, type: String
+  field :country, type: String
+  field :venue, type: String
+  field :long, type: BigDecimal
+  field :latt, type: BigDecimal
+
+
+  attr_accessible :picture, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :long, :latt
   mount_uploader :picture, PictureUploader
 
   belongs_to :organiser, class_name: 'User'

@@ -33,6 +33,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    binding.pry
     @event = current_user.events.new(params[:event])
 
     @event.organiser = current_user
