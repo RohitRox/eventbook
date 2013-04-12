@@ -15,6 +15,8 @@ gem 'devise'
 gem 'slim'
 gem 'slim-rails'
 
+gem 'geocoder'
+
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem 'stateflow'

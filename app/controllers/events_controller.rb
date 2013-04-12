@@ -33,13 +33,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
     @event = current_user.events.new(params[:event])
-
     @event.organiser = current_user
-
     respond_to do |format|
       if @event.save
+        @event.reverse_geocode unless @event.present?
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else

@@ -1,6 +1,9 @@
 class Event
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Geocoder::Model::Mongoid
+
+  geocoded_by :address
 
   field :title, type: String
   field :description, type: String
@@ -14,11 +17,12 @@ class Event
   field :locality, type: String
   field :country, type: String
   field :venue, type: String
-  field :long, type: BigDecimal
-  field :latt, type: BigDecimal
 
+  field :coordinates, :type => Array
 
-  attr_accessible :picture, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :long, :latt
+  reverse_geocoded_by :coordinates
+
+  attr_accessible :picture, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :coordinates
   mount_uploader :picture, PictureUploader
 
   belongs_to :organiser, class_name: 'User'
