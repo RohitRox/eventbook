@@ -17,6 +17,7 @@ gem 'slim-rails'
 
 gem 'geocoder'
 
+gem "rmagick"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem 'stateflow'

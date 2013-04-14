@@ -2,20 +2,16 @@ h1
   = @event.title
 
 .row-fluid
-  .span4
-    a.thumbnail href=""
-      = image_tag(@event.picture_url) if @event.picture?
-  .span8
-    table.table.table-bordered
-      tr
-        th
-          strong Date Time:
-          = @event.date
-          ' |
-          =@event.time
-        th
-          strong Entrance:
-          = @event.entrance
+  .span3
+    a.thumbnail href=@event.picture_url
+      = image_tag(@event.picture_url(:thumb))
+    p
+      strong When:
+      = "#{@event.date} : #{@event.time}"
+    p
+      strong Where:
+      = @event.address
+  .span9
     p.well
       = @event.description
     table.table.table-bordered
@@ -26,6 +22,9 @@ h1
         th
           strong Seats:
           = @event.seats
+        th
+          strong Entrance:
+          = @event.entrance
     p
       strong Attendies:
       strong

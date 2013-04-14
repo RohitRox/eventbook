@@ -48,6 +48,7 @@
           - if user_signed_in?
             a.btn.btn-info href="/events/new" Create A New Event
             a.btn.btn-info href="/events" My Events
+            a.btn.btn-info href=user_path(current_user) My Profile
             =link_to 'Sign Out', '/users/sign_out', class: "btn btn-danger", method: :delete
           - else
             a.btn.btn-info href="/users/sign_in" Sign In

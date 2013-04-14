@@ -2,6 +2,7 @@ Eventbook::Application.routes.draw do
   devise_for :users
 
   resources :events
+  resources :users, only: [:show]
 
   namespace :api do
     namespace :v1  do
