@@ -3,8 +3,6 @@ class Event
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
 
-  geocoded_by :address
-
   field :title, type: String
   field :description, type: String
   field :category, type: String
@@ -19,12 +17,15 @@ class Event
   field :venue, type: String
 
   field :coordinates, :type => Array
+  index({coordinates: '2d'})
 
   reverse_geocoded_by :coordinates
+  geocoded_by :address
 
   attr_accessible :picture, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :coordinates
   mount_uploader :picture, PictureUploader
 
   belongs_to :organiser, class_name: 'User'
   has_many :bookings
+
 end

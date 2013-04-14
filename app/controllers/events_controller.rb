@@ -33,11 +33,17 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.new(params[:event])
-    @event.organiser = current_user
+    param = params[:event].tap { |e|
+      e['date'] = Date::civil(e['date(1i)'].to_i, e['date(2i)'].to_i, e['date(3i)'].to_i)
+      e.delete("date(1i)")
+      e.delete("date(2i)")
+      e.delete("date(3i)")
+      e[:coordinates].map!(&:to_f)
+    }
+    @event = current_user.events.new(param)
     respond_to do |format|
       if @event.save
-        @event.reverse_geocode unless @event.present?
+        @event.update_attribute(:address, @event.reverse_geocode) unless @event.address.present?
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
