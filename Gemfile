@@ -23,6 +23,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 group :development do
   gem 'pry-rails'
+  gem 'capistrano'
 end
 
 # Gems used only for assets and not required
