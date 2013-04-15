@@ -7,28 +7,36 @@ h1
   .span3
     a.thumbnail href=@event.picture_url
       = image_tag(@event.picture_url(:thumb))
-    p
-      strong When:
-      = "#{@event.date} : #{@event.time}"
-    p
-      strong Where:
-      = @event.address
+    br
+    table.table
+      tr
+        th
+          strong When:
+          = "#{@event.date} : #{@event.time}"
+      tr
+        th
+          strong Where:
+          = @event.address
   .span9
     p.well
       = @event.description
-    #map_canvas
-    br
-    table.table.table-bordered
-      tr
-        th
-          strong Category:
-          = @event.category
-        th
-          strong Seats:
-          = @event.seats
-        th
-          strong Entrance:
-          = @event.entrance
+    .row-fluid
+      .span8
+        #map_canvas
+      .span4
+        table.table.table-bordered
+          tr
+            th
+              strong Category:
+              = @event.category
+          tr
+            th
+              strong Seats:
+              = @event.seats
+          tr
+            th
+              strong Entrance:
+              = @event.entrance
     p
       strong Attendies:
       strong
@@ -42,13 +50,13 @@ h1
     var longitude   = #{@event.coordinates[0]};
     var myLatlng = new google.maps.LatLng(latitude, longitude);
     var myOptions = {
-      zoom: 16,
+      zoom: 14,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     var marker = new google.maps.Marker({
-          position: myLatlng, 
+          position: myLatlng,
           map: map,
       title: "#{@event.title}"
      });

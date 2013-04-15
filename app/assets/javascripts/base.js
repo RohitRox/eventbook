@@ -1,11 +1,9 @@
 $(function() {
-  if( $('#map').length > 0){
-   map_init(27.699944, 85.333385);
-  }
-  function map_init(latt,lngt){
-     var addresspickerMap = $( "#event_address" ).addresspicker({
+
+  window.geo_render = function(latt,lngt, el){
+     var addresspickerMap = $("#event_address").addresspicker({
       elements: {
-        map:      "#map",
+        map:      el,
         lat:      "#event_latt",
         lng:      "#event_long",
         locality: '#event_locality',
@@ -17,8 +15,6 @@ $(function() {
     var gmarker = addresspickerMap.addresspicker( "marker");
     gmarker.setVisible(true);
     addresspickerMap.addresspicker( "updatePosition");
-  }
-  function render_map(latt, lngt){
-    map_init(latt,lngt);
-  }
+  };
+
 });

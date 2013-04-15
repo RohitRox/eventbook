@@ -2,7 +2,6 @@ class EventsController < ApplicationController
 
   def index
     @events = current_user.events.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
@@ -56,9 +55,15 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-
+    param = params[:event].tap { |e|
+      e['date'] = Date::civil(e['date(1i)'].to_i, e['date(2i)'].to_i, e['date(3i)'].to_i)
+      e.delete("date(1i)")
+      e.delete("date(2i)")
+      e.delete("date(3i)")
+      e[:coordinates].map!(&:to_f)
+    }
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(param)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else

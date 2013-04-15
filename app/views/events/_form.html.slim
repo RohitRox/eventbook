@@ -58,11 +58,22 @@ script src="http://maps.google.com/maps/api/js?sensor=false"
         = f.submit 'Save', class: 'btn'
         | &nbsp;
         = link_to 'Back', events_path, class: 'btn'
-    .span5
+    .span6
       #map
 - if @event.coordinates.present?
   = content_for(:custom_script) do
     script type="text/javascript"
+      | $(function(){
       | var latitude = #{@event.coordinates[1]};
-      | var longitude   = #{@event.coordinates[0]};
-      | render_map(latitude, longitude);
+      | var longitude = #{@event.coordinates[0]};
+      | geo_render(latitude, longitude, '#map');
+      | });
+- else
+  = content_for(:custom_script) do
+    script type="text/javascript"
+      | navigator.geolocation.getCurrentPosition(function(data){
+      |   var latitude = data.coords.latitude;
+      |   var longitude = data.coords.longitude;
+      |   geo_render(latitude, longitude, '#map');
+      | });
+
