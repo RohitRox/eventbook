@@ -18,8 +18,8 @@ $.widget( "ui.addresspicker", {
   options: {
     appendAddressString: "",
     mapOptions: {
-      zoom: 12,
-      center: new google.maps.LatLng(27.699944, 85.333385),
+      zoom: 14,
+      center: new google.maps.LatLng(this.myLatt, this.myLong),
       scrollwheel: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     },
@@ -68,6 +68,8 @@ $.widget( "ui.addresspicker", {
     this.lng      = $(this.options.elements.lng);
     this.locality = $(this.options.elements.locality);
     this.country  = $(this.options.elements.country);
+    this.myLatt = this.options.elements.myLatt;
+    this.myLong = this.options.elements.myLong;
     if (this.options.elements.map) {
       this.mapElement = $(this.options.elements.map);
       this._initMap();

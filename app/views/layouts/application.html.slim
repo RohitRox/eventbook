@@ -9,3 +9,4 @@ html lang="en"
       = yield
     = render "/shared/footer"
     = javascript_include_tag "application", :media => "all"
+    = yield(:custom_script)
