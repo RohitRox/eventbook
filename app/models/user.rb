@@ -30,6 +30,7 @@ class User
   has_many :events, class_name: 'Event', inverse_of: :organiser
   has_many :bookings
   has_many :tickets
+  has_one :profile, autobuild: true
 
   ## Confirmable
   # field :confirmation_token,   :type => String

@@ -1,6 +1,19 @@
-p
-  | User::
-  =@user.email
-p
-  | Api Token::
-  =@user.authentication_token
+.row-fluid
+  .span4
+    h4
+      | User: &nbsp;
+      =@user.email
+    h4
+      | Api Token: &nbsp;
+      =@user.authentication_token
+  .span8
+    =image_tag @user.profile.profile_pic, class: 'pull-left'
+    p
+      strong Address :
+      = @user.profile.address
+    p
+      strong Cell  :
+      = @user.profile.cell_no
+    br
+    -if @user == current_user
+      =link_to "Edit",  edit_profile_user_path(@user), class: "btn"

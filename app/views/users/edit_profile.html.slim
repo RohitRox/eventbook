@@ -1,0 +1,22 @@
+h2 Edit your profile
+.row-fluid
+  = form_for @profile,:url => { :action => "update_profile" } do |f|
+    - if @profile.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@profile.errors.count, "error")} prohibited this profile from being saved:"
+        ul
+          - @profile.errors.full_messages.each do |message|
+            li = message
+    .row-fluid
+      .span6
+        .field
+          = f.label :profile_pic
+          = f.file_field :profile_pic
+        .field
+          = f.label :address
+          = f.text_field :address
+        .field
+          = f.label :cell_no
+          = f.text_field :cell_no
+        .field
+          = f.submit 'Save', class: 'btn'

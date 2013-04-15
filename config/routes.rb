@@ -2,8 +2,12 @@ Eventbook::Application.routes.draw do
   devise_for :users
 
   resources :events
-  resources :users, only: [:show]
-
+  resources :users, only: [:show] do
+    member do
+      get 'edit_profile'
+      put 'update_profile'
+    end
+  end
   namespace :api do
     namespace :v1  do
       resources :tokens,:only => [:create, :destroy]
