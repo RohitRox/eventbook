@@ -28,4 +28,17 @@ class Event
   belongs_to :organiser, class_name: 'User'
   has_many :bookings
 
+  CATEGORIES = [ "Parties",
+                 "Food N Music",
+                 "Conference N Seminar",
+                 "Exhibition",
+                 "Fundraiser",
+                 "Concerts",
+                 "Live Shows",
+                 "Trainings",
+                 "Sports",
+                 "Political",
+                 "Other"
+               ]
+  ENTRANCE = ["Free","Ticketed","Invitee Only"]
 end

@@ -21,13 +21,13 @@ script src="http://maps.google.com/maps/api/js?sensor=false"
     .span4
       .field
         = f.label :category
-        = f.text_field :category
+        = f.select :category, Event::CATEGORIES
       .field
         = f.label :seats
-        = f.number_field :seats
+        = f.number_field :seats, min: 1
       .field
         = f.label :entrance
-        = f.text_field :entrance
+        = f.select :entrance, Event::ENTRANCE
       .field
         = f.label :date
         = f.date_select :date
