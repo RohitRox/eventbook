@@ -1,33 +1,18 @@
-h1 My Events
-p.pull-right
-  = link_to 'New Event', new_event_path, class: "btn"
-table.table
-  tr
-    th Title
-    th Category
-    th Seats
-    th Entrance
-    th Date
-    th Time
-    th{ colspan='3'} Actions
-
-  - @events.each do |event|
-    tr
-      td = event.title
-      td = event.category
-      td = event.seats
-      td = event.entrance
-      td = event.date
-      td = event.time
-      td
-        == link_to event, class: 'btn' do
-          i.icon-zoom-in
-          |  View
-      td
-        == link_to edit_event_path(event), class: 'btn' do
-          i.icon-pencil
-          |  Edit
-      td
-        = link_to event, confirm: 'Are you sure?', method: :delete, class: "btn" do
-          i.icon-trash
-          |  Delete
+- @events.each_slice(4) do |events|
+  .row-fluid
+    -events.each do |event|
+      div.box-wrap.span3
+        img src=event.picture_url(:thumb)
+        .box-inner
+          =link_to "<h4>#{event.title.humanize}</h4>".html_safe, event_path(event)
+          p
+            strong
+              i.icon-time &nbsp;
+              | When: &nbsp;
+            =event.date
+            =event.time
+          p
+            strong
+              i.icon-map-marker &nbsp;
+              | Where: &nbsp;
+            =event.address

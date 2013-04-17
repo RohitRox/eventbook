@@ -28,6 +28,8 @@ class Event
   belongs_to :organiser, class_name: 'User'
   has_many :bookings
 
+  validates_presence_of :title
+
   CATEGORIES = [ "Parties",
                  "Food N Music",
                  "Conference N Seminar",

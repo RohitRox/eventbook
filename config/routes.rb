@@ -25,6 +25,7 @@ Eventbook::Application.routes.draw do
     end
   end
 
+  match 'my_events' => 'events#my_events'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

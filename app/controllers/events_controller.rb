@@ -1,11 +1,17 @@
 class EventsController < ApplicationController
 
+  skip_before_filter :authenticate_user!, only: [:index]
+
   def index
-    @events = current_user.events.all
+    @events = params[:category] ? Event.where(category: params[:category]).all : Event.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
+  end
+
+  def my_events
+     @events = current_user.events.all
   end
 
   def show

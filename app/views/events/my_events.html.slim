@@ -1,0 +1,33 @@
+h1 My Events
+p.pull-right
+  = link_to 'New Event', new_event_path, class: "btn"
+table.table
+  tr
+    th Title
+    th Category
+    th Seats
+    th Entrance
+    th Date
+    th Time
+    th{ colspan='3'} Actions
+
+  - @events.each do |event|
+    tr
+      td = event.title
+      td = event.category
+      td = event.seats
+      td = event.entrance
+      td = event.date
+      td = event.time
+      td
+        == link_to event, class: 'btn' do
+          i.icon-zoom-in
+          |  View
+      td
+        == link_to edit_event_path(event), class: 'btn' do
+          i.icon-pencil
+          |  Edit
+      td
+        = link_to event, confirm: 'Are you sure?', method: :delete, class: "btn" do
+          i.icon-trash
+          |  Delete

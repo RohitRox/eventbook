@@ -15,10 +15,14 @@
                 a href="/"
                   i.icon-home
                   br Home
-              li
-                a href="portfolio.html"
+              li.dropdown
+                a href="/events"
                   i.icon-star
                   br Events
+                ul.dropdown-menu
+                  -Event::CATEGORIES.each do |cat|
+                    li
+                      =link_to cat, "/events?category=#{cat}"
               li
                 a href="#"
                   i.icon-comments
@@ -47,8 +51,8 @@
         .input-append.input-prepend
           - if user_signed_in?
             a.btn.btn-info href="/events/new" Create A New Event
-            a.btn.btn-info href="/events" My Events
-            a.btn.btn-info href=user_path(current_user) My Profile
+            a.btn.btn-info href="/my_events" My Events
+            a.btn.btn-info href=user_path(current_user) =current_user.email.humanize
             =link_to 'Sign Out', '/users/sign_out', class: "btn btn-danger", method: :delete
           - else
             a.btn.btn-info href="/users/sign_in" Sign In

@@ -71,18 +71,29 @@ strong { font-weight: bold; }
 }
 
 .header ul.nav li a {
-    padding: 30px 20px 10px 20px;
     color: #5d5d5d;
     text-shadow: none;
 }
 
+.dropdown-menu > li > a{
+    text-align: left;
+}
+
+.header ul.nav .dropdown-menu li:hover a{
+    color: #fff;
+}
+
+.dropdown:hover ul{
+    display: block;
+}
+
 .header ul.nav li.current-page a {
-    padding-top: 25px;
+    padding-top: 5px;
     border-top: 5px solid #218EAE;
     background: #f8f8f8;
 }
 
-.header ul.nav li a:hover {
+.header ul.nav li:hover {
     background: #218EAE;
     color: #fff;
 }
@@ -94,6 +105,7 @@ strong { font-weight: bold; }
 
 .header ul.nav li a:hover i { color: #fff; }
 
+.header ul.nav li.current-page a:hover i{ color: #aaa }
 
 /* ----- Slider ----- */
 
@@ -173,6 +185,8 @@ strong { font-weight: bold; }
     padding-bottom: 23px;
     background: #f8f8f8;
     border-bottom: 2px solid #218EAE;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px #ccc;
 }
 
 .what-we-do .service:hover {
@@ -187,7 +201,7 @@ strong { font-weight: bold; }
 }
 
 .what-we-do .service .icon-awesome {
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 50px;
     line-height: 50px;
     color: #5d5d5d;
@@ -203,7 +217,7 @@ strong { font-weight: bold; }
 }
 
 .what-we-do .service p {
-    padding-bottom: 10px;
+    padding: 10px;
     line-height: 24px;
 }
 

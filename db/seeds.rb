@@ -35,7 +35,6 @@ end
 8.times{ |i|
   event = Event.all.shuffle.first
   user = User.all[i]
-  binding.pry
   booking = user.bookings.new(event: event)
   booking.save!
   2.times { booking.tickets.create(user: user) }
