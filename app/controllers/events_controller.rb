@@ -16,7 +16,12 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @attendies = @event.bookings.size
+    @bookings = @event.bookings.size
+
+    e_group = @event.bookings.asc(:created_at).group_by { |event| event.created_at.to_i*1000 }
+    #e_group.each { |k, v| e_group[k] = v.size }
+    @data_arr = e_group.update(e_group){|key,v1| v1.size}.to_a
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }

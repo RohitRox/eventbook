@@ -29,13 +29,12 @@ PLACES = [
     address: place.keys.first,
     coordinates: place.values.last
     )
-
 end
 
-8.times{ |i|
+50.times{
   event = Event.all.shuffle.first
-  user = User.all[i]
+  user = User.all[rand(10)]
   booking = user.bookings.new(event: event)
   booking.save!
-  2.times { booking.tickets.create(user: user) }
+  rand(4).times { booking.tickets.create(user: user) }
 }

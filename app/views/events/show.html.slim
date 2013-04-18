@@ -37,10 +37,20 @@ h1
             th
               strong Entrance:
               = @event.entrance
-    p
-      strong Attendies:
-      strong
-        = @attendies
+    br
+    .row-fluid
+      #event_chart.span8 style="height: 220px"
+      .span4
+        table.table.table-bordered
+          tr
+            th
+              strong Total Bookings: &nbsp;
+              = @bookings
+          tr
+            th
+              strong Impression: &nbsp;
+              | 7/10
+
 = link_to 'Edit', edit_event_path(@event), class: 'btn'
 | &nbsp;
 = link_to 'Back', events_path, class: 'btn'
@@ -60,3 +70,40 @@ h1
           map: map,
       title: "#{@event.title}"
      });
+= content_for(:custom_script) do
+  script type="text/javascript"
+    |$(function () {
+    |  var book_data = #{raw @data_arr};
+    |  $.plot($("#event_chart"),
+    |  [
+    |   {
+    |     data: book_data,
+    |     label: "Booking Activity",
+    |     points: { show: true },
+    |     lines: { show: true}
+    |   }
+    |  ],
+    |  {
+    |    grid: {
+    |        backgroundColor: { colors: ["#D1D1D1", "#7A7A7A"] }
+    |    },
+    |    xaxis: {
+    |        mode: "time",
+    |        timeformat: "%0m/%0d"
+    |    },
+    |    yaxes: [
+    |            {
+    |                /* First y axis */
+    |            },
+    |            {
+    |                /* Second y axis */
+    |                position: "right"  /* left or right */
+    |            }
+    |            ]
+    |        }
+    |    );
+    |});
+
+
+
+
