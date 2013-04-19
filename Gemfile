@@ -23,7 +23,9 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'stateflow'
 
 gem 'rack-cors', :require => 'rack/cors'
-
+gem 'rabl'
+# Also add either `oj` or `yajl-ruby` as the JSON parser
+gem 'oj'
 group :development do
   gem 'pry-rails'
   gem 'ffaker'

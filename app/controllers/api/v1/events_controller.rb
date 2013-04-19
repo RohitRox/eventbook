@@ -1,10 +1,11 @@
 class Api::V1::EventsController < Api::V1::BaseController
+  respond_to :json
 
-  layout 'false'
+  # layout 'false'
 
   def index
     @events = Event.all
-    render :json => @events.to_json
+    # render :json => @events.to_json
   end
 
   def show
