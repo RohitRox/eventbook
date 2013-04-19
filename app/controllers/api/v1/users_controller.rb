@@ -16,7 +16,7 @@ class Api::V1::UsersController <  Api::V1::BaseController
     end
 
     user = User.where(email: email).first
-    puts user.email
+
     if user
       render :status=>200,
             :json=>{token: user.authentication_token }
