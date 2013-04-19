@@ -1,6 +1,6 @@
 class Api::V1::BaseController < ApplicationController
 
-  after_filter :cors_preflight_check
+  # after_filter :cors_preflight_check
   # after_filter :cors_set_access_control_headers
   skip_before_filter :verify_authenticity_token
   before_filter :find_by_auth_token
