@@ -86,7 +86,7 @@ end
   namespace :app_server do
     desc "Restart the web server"
       task :restart do
-        run "cd #{current_release}; unicornctl restart"
+        run "cd #{current_release}; sudo unicornctl restart"
       end
   end
 
