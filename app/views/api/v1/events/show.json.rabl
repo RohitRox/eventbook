@@ -1,4 +1,4 @@
-collection @events
+object @event
 attributes :_id,
  :address,
  :category,

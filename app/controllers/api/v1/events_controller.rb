@@ -10,7 +10,6 @@ class Api::V1::EventsController < Api::V1::BaseController
 
   def show
     @event = Event.find(params[:id])
-    render :json => @event.to_json
   end
 
   def book
@@ -18,14 +17,15 @@ class Api::V1::EventsController < Api::V1::BaseController
     booking = @user.bookings.new(event: event)
     booking.save!
     ticket_arr = []
-    params[:qty].times do
+    params[:qty].to_i.times do
       ticket = booking.tickets.create(user: @user)
       ticket_arr << { ticket: ticket.id.to_s }
     end
-    render json: {
-                    event: event.title,
-                    tickets: ticket_arr
-                  }
+    @event = Struct.new(:title,:tickets).new(event.title,ticket_arr)
+    # render json: {
+    #                 event: event.title,
+    #                 tickets: ticket_arr
+    #               }
   end
 
 end
