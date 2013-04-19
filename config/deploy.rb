@@ -86,7 +86,7 @@ end
   namespace :app_server do
     desc "Restart the web server"
       task :restart do
-        run "cd #{current_path}; unicornctl restart"
+        run "cd #{current_path}; sudo unicornctl restart"
       end
   end
 
@@ -106,5 +106,5 @@ end
   end
 
 before "deploy:update_code", "assets:compress_assets"
-after "deploy:update_code", "assets:upload_assets"#,"app_server:restart"
+after "deploy:update_code", "assets:upload_assets","app_server:restart"
 #after :deploy, "customs:symlink"#,  'deploy:cleanup', 'deploy:daemon_restart'#,'customs:update_forms'

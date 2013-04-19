@@ -2,14 +2,15 @@ Eventbook::Application.routes.draw do
   devise_for :users
 
   resources :events
+  # match '/api/events' => 'api#surecompany', :via => [:get]
   resources :users, only: [:show] do
     member do
       get 'edit_profile'
       put 'update_profile'
     end
   end
-  namespace :api do
-    namespace :v1  do
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1, defaults: {format: 'json'}  do
       resources :tokens,:only => [:create, :destroy]
       resources :events do
         member do
