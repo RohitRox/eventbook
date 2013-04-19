@@ -26,8 +26,8 @@ role :db,  "23.22.125.64"#, :primary => true # This is where Rails migrations wi
 
 set :user, "deploy"  # The server's user for deploys
 set :port, 22
-set :use_sudo, false
 
+set :use_sudo, false
 
 ssh_options[:forward_agent] = true # using your own private keys for git you might want to tell Capistrano to use agent forwarding with this command
 set :scm, :git
@@ -47,6 +47,7 @@ set :bundle_dir,""
 set :bundle_flags,"--deployment"
 set :bundle_without, [:development, :test]
 
+set :rails_env, "production"
 
 #Pre Compile asset on the server
 # load 'deploy/assets'
@@ -73,7 +74,7 @@ end
         run_locally("tar zcvf assets.tgz public/assets/")
         run_locally("mv assets.tgz public/assets/")
     end
-  
+
     desc "Upload assets"
       task :upload_assets, :roles => [:app] do
         upload("public/assets/assets.tgz", release_path + '/assets.tgz')
@@ -85,7 +86,7 @@ end
   namespace :app_server do
     desc "Restart the web server"
       task :restart do
-        run "/etc/init.d/unicorn upgrade"
+        run "cd #{current_path}; unicornctl restart"
       end
   end
 
