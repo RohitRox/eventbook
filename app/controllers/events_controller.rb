@@ -51,9 +51,11 @@ class EventsController < ApplicationController
       e[:coordinates].map!(&:to_f)
     }
     @event = current_user.events.new(param)
+
     respond_to do |format|
       if @event.save
         @event.update_attribute(:address, @event.reverse_geocode) unless @event.address.present?
+        Publisher.new(@event).publish
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else

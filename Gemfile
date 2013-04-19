@@ -16,6 +16,7 @@ gem 'slim'
 gem 'slim-rails'
 
 gem 'geocoder'
+gem 'fb_graph'
 
 gem "rmagick"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'

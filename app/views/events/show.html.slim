@@ -17,6 +17,7 @@ h1
         th
           strong Where:
           = @event.address
+    .fb-comments data-href="#{event_url(@event)}" data-width="265" data-num-posts="8"
   .span9
     p.well
       = @event.description
@@ -24,6 +25,12 @@ h1
       .span8
         #map_canvas
       .span4
+        .addthis_toolbox.addthis_default_style
+          a.addthis_button_facebook_like fb:like:layout="button_count"
+          a.addthis_button_tweet
+          /a.addthis_button_pinterest_pinit
+        script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5171ae0335a36243"
+        br
         table.table.table-bordered
           tr
             th
