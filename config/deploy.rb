@@ -104,6 +104,6 @@ end
     end
   end
 
-#before "deploy:update_code", "assets:compress_assets"
-#after "deploy:update_code", "assets:upload_assets"#,"app_server:restart"
+before "deploy:update_code", "assets:compress_assets"
+after "deploy:update_code", "assets:upload_assets","app_server:restart"
 #after :deploy, "customs:symlink"#,  'deploy:cleanup', 'deploy:daemon_restart'#,'customs:update_forms'
