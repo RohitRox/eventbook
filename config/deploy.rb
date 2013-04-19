@@ -1,16 +1,16 @@
 default_run_options[:pty] = true
 require "bundler/capistrano"
 # $:.unshift(File.expand_path('./lib', ENV['rvm_path']))  #Throws error in newer versions of RVM
-require "rvm/capistrano"
+# require "rvm/capistrano"
 # require 'sidekiq/capistrano'
 
-set :stages, %w(production staging)
-set :default_stage, "production"
-require 'capistrano/ext/multistage'
+# set :stages, %w(production staging)
+# set :default_stage, "production"
+# require 'capistrano/ext/multistage'
 
-# set :rails_env, "production"
+set :rails_env, "production"
 # set :rvm_ruby_string, '1.9.3-p290'
-# set :rvm_type, :system
+# set :rvm_type, :systemgg
 # set :rvm_bin_path, "/usr/local/rvm/bin"
 
 set :rake, "bundle exec rake"
@@ -24,19 +24,19 @@ role :web, "23.22.125.64"                          # Your HTTP server, Apache/et
 role :app, "23.22.125.64"                          # This may be the same as your `Web` server
 role :db,  "23.22.125.64"#, :primary => true # This is where Rails migrations will run
 
-set :user, "ubuntu"  # The server's user for deploys
-set :port, 20
+set :user, "deploy"  # The server's user for deploys
+set :port, 22
 set :use_sudo, false
 
 
-#ssh_options[:forward_agent] = true # using your own private keys for git you might want to tell Capistrano to use agent forwarding with this command
+ssh_options[:forward_agent] = true # using your own private keys for git you might want to tell Capistrano to use agent forwarding with this command
 set :scm, :git
 # set :scm_username, 'sprout-deploy'
 
-set :deploy_to, "/home/ubuntu/#{application}/"
+set :deploy_to, "/home/deploy/#{application}/"
 set :deploy_via, :remote_cache
 # set :deploy_env, 'production'
-# set :sudo_password, "kathmandu09"
+set :sudo_password, "deploy"
 
 # role :web, "50.116.14.33"                          # Your HTTP server, Apache/etc
 # role :app, "50.116.14.33"                          # This may be the same as your `Web` server
@@ -44,7 +44,7 @@ set :deploy_via, :remote_cache
 
 set :bundle_gemfile, "Gemfile"
 set :bundle_dir,""
-set :bundle_flags,""
+set :bundle_flags,"--deployment"
 set :bundle_without, [:development, :test]
 
 
@@ -85,7 +85,7 @@ end
   namespace :app_server do
     desc "Restart the web server"
       task :restart do
-        run "sudo /etc/init.d/unicorn upgrade"
+        run "/etc/init.d/unicorn upgrade"
       end
   end
 
@@ -97,10 +97,6 @@ end
   end
 
   namespace :customs  do
-    task :update_forms do
-      run "cd #{current_release}; RAILS_ENV=#{rails_env} rake forms:update --trace"
-    end
-
     task :symlink, :roles => :app do
       # run "ln -nfs #{shared_path}/documents #{release_path}/public/documents"
       # run "ln -nfs #{shared_path}/splitted_images #{release_path}/public/splitted_images"
@@ -109,5 +105,5 @@ end
   end
 
 before "deploy:update_code", "assets:compress_assets"
-after "deploy:update_code", "assets:upload_assets","app_server:restart"
-after :deploy, "customs:symlink"#,  'deploy:cleanup', 'deploy:daemon_restart'#,'customs:update_forms'
+after "deploy:update_code", "assets:upload_assets"#,"app_server:restart"
+#after :deploy, "customs:symlink"#,  'deploy:cleanup', 'deploy:daemon_restart'#,'customs:update_forms'
