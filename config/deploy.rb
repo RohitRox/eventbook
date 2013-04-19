@@ -85,7 +85,7 @@ end
   namespace :app_server do
     desc "Restart the web server"
       task :restart do
-        run "/etc/init.d/unicorn upgrade"
+        run "cd #{current_release}; unicornctl restart"
       end
   end
 
