@@ -13,4 +13,5 @@ attributes :_id,
  :seats,
  :time,
  :title,
- :updated_at
+ :updated_at,
+ :picture
