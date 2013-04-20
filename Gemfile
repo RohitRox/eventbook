@@ -29,8 +29,8 @@ gem 'rabl'
 gem 'oj'
 group :development do
   gem 'pry-rails'
-  gem 'ffaker'
 end
+  gem 'ffaker'
 
 # Gems used only for assets and not required
 # in production environments by default.
