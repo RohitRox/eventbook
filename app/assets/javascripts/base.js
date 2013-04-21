@@ -17,4 +17,9 @@ $(function() {
     addresspickerMap.addresspicker( "updatePosition");
   };
 
+  $('#bg_button').click(function(e){
+    e.preventDefault();
+    $('.custom-bg').slideToggle();
+  });
+
 });

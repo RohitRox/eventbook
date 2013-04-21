@@ -10,11 +10,14 @@ class Event
   field :entrance, type: String
   field :date, type: Date
   field :time, type: String
+  field :featured, type: Boolean, default: false
 
   field :address, type: String
   field :locality, type: String
   field :country, type: String
   field :venue, type: String
+  field :style, type: String
+  field :price, type: Float
 
   field :coordinates, :type => Array
   index({coordinates: '2d'})
@@ -22,8 +25,10 @@ class Event
   reverse_geocoded_by :coordinates
   geocoded_by :address
 
-  attr_accessible :picture, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :coordinates
+  attr_accessible :picture, :event_background, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :coordinates, :style
+
   mount_uploader :picture, PictureUploader
+  mount_uploader :event_background, EventBackgroundUploader
 
   belongs_to :organiser, class_name: 'User'
   has_many :bookings
@@ -43,4 +48,5 @@ class Event
                  "Other"
                ]
   ENTRANCE = ["Free","Ticketed","Invitee Only"]
+
 end

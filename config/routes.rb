@@ -14,7 +14,8 @@ Eventbook::Application.routes.draw do
       resources :tokens,:only => [:create, :destroy]
       resources :events do
         member do
-          post :book
+          get :book
+          get :geocode
         end
       end
       resources :users do

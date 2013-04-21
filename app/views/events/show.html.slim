@@ -45,22 +45,23 @@ h1
               strong Entrance:
               = @event.entrance
     br
-    .row-fluid
-      #event_chart.span8 style="height: 220px"
-      .span4
-        table.table.table-bordered
-          tr
-            th
-              strong Total Bookings: &nbsp;
-              = @bookings
-          tr
-            th
-              strong Impression: &nbsp;
-              | 7/10
-
-= link_to 'Edit', edit_event_path(@event), class: 'btn'
-| &nbsp;
-= link_to 'Back', events_path, class: 'btn'
+    - if can? :monitor, @event
+      .row-fluid
+        #event_chart.span8 style="height: 220px"
+        .span4
+          table.table.table-bordered
+            tr
+              th
+                strong Total Bookings: &nbsp;
+                = @bookings
+            tr
+              th
+                strong Impression: &nbsp;
+                | 7/10
+- if can? :update, @event
+  = link_to 'Edit', edit_event_path(@event), class: 'btn'
+  | &nbsp;
+  = link_to 'Back', events_path, class: 'btn'
 - if @event.coordinates.present?
   javascript:
     var latitude = #{@event.coordinates[1]};
@@ -77,6 +78,7 @@ h1
           map: map,
       title: "#{@event.title}"
      });
+- bg = "$('body').css('background', 'url(#{@event.event_background_url}) #{@event.style}')".html_safe
 = content_for(:custom_script) do
   script type="text/javascript"
     |$(function () {
@@ -109,8 +111,8 @@ h1
     |            ]
     |        }
     |    );
+    | #{bg}
     |});
-
 
 
 

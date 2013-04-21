@@ -6,14 +6,17 @@
     h4
       | Api Token: &nbsp;
       =@user.authentication_token
-  .span8
-    =image_tag @user.profile.profile_pic, class: 'pull-left'
-    p
-      strong Address :
-      = @user.profile.address
-    p
-      strong Cell  :
-      = @user.profile.cell_no
-    br
-    -if @user == current_user
-      =link_to "Edit",  edit_profile_user_path(@user), class: "btn"
+  .span8.profile
+    .row-fluid
+      .span4
+        =image_tag @user.profile.profile_pic
+      .span8
+        p
+          strong Address :
+          = @user.profile.address
+        p
+          strong Cell  :
+          = @user.profile.cell_no
+        br
+        -if @user == current_user
+          =link_to "Edit",  edit_profile_user_path(@user), class: "btn"

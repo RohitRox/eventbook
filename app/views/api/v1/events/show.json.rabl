@@ -14,3 +14,4 @@ attributes :_id,
  :time,
  :title,
  :updated_at
+ :price

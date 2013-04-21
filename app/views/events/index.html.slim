@@ -2,17 +2,21 @@
   .row-fluid
     -events.each do |event|
       div.box-wrap.span3
-        img src=event.picture_url(:thumb)
-        .box-inner
-          =link_to "<h4>#{event.title.humanize}</h4>".html_safe, event_path(event)
-          p
-            strong
-              i.icon-time &nbsp;
-              | When: &nbsp;
-            =event.date
-            =event.time
-          p
-            strong
-              i.icon-map-marker &nbsp;
-              | Where: &nbsp;
-            =event.address
+        .pin-event
+          img src=event.picture_url(:thumb)
+          .box-inner
+            p
+              =link_to event.title.humanize, event_path(event), class: "event-title"
+            p
+              strong
+                i.icon-time &nbsp;
+                | When: &nbsp;
+              =event.date
+              =event.time
+              br
+              strong
+                i.icon-map-marker &nbsp;
+                | Where: &nbsp;
+              =event.address
+
+= paginate @events

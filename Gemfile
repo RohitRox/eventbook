@@ -10,7 +10,9 @@ gem 'mongoid'
 
 # auth
 gem 'devise'
+gem 'cancan'
 
+gem 'kaminari'
 # templating
 gem 'slim'
 gem 'slim-rails'

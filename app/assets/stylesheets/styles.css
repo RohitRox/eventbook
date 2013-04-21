@@ -94,8 +94,8 @@ strong { font-weight: bold; }
 }
 
 .header ul.nav li:hover {
-    background: #218EAE;
     color: #fff;
+    background: #f8f8f8;
 }
 
 .header ul.nav li a i {
@@ -103,9 +103,9 @@ strong { font-weight: bold; }
     color: #aaa;
 }
 
-.header ul.nav li a:hover i { color: #fff; }
+.header ul.nav li a:hover i { color: #333; }
 
-.header ul.nav li.current-page a:hover i{ color: #aaa }
+.header ul.nav li.current-page a:hover i{ color: #333 }
 
 /* ----- Slider ----- */
 

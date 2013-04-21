@@ -13,10 +13,22 @@ script src="http://maps.google.com/maps/api/js?sensor=false"
         = f.text_field :title, required: true
       .field
         = f.label :description
-        = f.text_area :description, rows: '10', cols: '44'
+        = f.text_area :description, rows: '10', cols: '44', required: true
       .field
         = f.label :picture
         = f.file_field :picture
+      .field
+        button id="bg_button"
+          | Use a Custom Background
+        .custom-bg
+          h4 Event Backgound
+          = f.file_field :event_background
+          = f.label "style_no-repeat", class: "radio" do
+            | Full Screen
+            = f.radio_button :style, "no-repeat center top", id: "event_style_no-repeat"
+          = f.label "style_repeat", class: "radio" do
+            | Tile
+            = f.radio_button :style, "repeat", id: "event_style_repeat"
 
     .span4
       .field
@@ -24,16 +36,23 @@ script src="http://maps.google.com/maps/api/js?sensor=false"
         = f.select :category, Event::CATEGORIES
       .field
         = f.label :seats
-        = f.number_field :seats, min: 1
+        = f.number_field :seats, min: 1, placeholder: "Blank if there is not seat limit", style: "width: 60%"
       .field
         = f.label :entrance
         = f.select :entrance, Event::ENTRANCE
+      .field
+        = f.label :price
+        = f.text_field :price, placeholder: "Leave blank if entrance is free"
       .field
         = f.label :date
         = f.date_select :date
       .field
         = f.label :time
-        = f.text_field :time
+        = f.text_field :time, placeholder: "Eg. 7:00 PM onwards, 5:00 PM - 9:00 PM"
+      .field
+        = f.label :featured, class: "checkbox" do
+          | Make featured
+          = f.check_box :featured
 
   .row-fluid
     .span4

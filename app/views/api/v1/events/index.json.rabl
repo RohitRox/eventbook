@@ -6,7 +6,6 @@ attributes :_id,
  :country,
  :created_at,
  :date,
- :description,
  :entrance,
  :locality,
  :organiser_id,
@@ -15,3 +14,4 @@ attributes :_id,
  :title,
  :updated_at,
  :picture
+ :price

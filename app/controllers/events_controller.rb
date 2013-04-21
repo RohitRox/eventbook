@@ -1,9 +1,11 @@
 class EventsController < ApplicationController
 
-  skip_before_filter :authenticate_user!, only: [:index]
+  skip_before_filter :authenticate_user!, only: [:index, :show]
+  load_and_authorize_resource
 
   def index
-    @events = params[:category] ? Event.where(category: params[:category]).all : Event.all
+    page = params[:page] || 1
+    @events = params[:category] ? Event.where(category: params[:category]).page(page).desc(:created_at) : Event.page(page).desc(:created_at)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
@@ -11,7 +13,8 @@ class EventsController < ApplicationController
   end
 
   def my_events
-     @events = current_user.events.all
+    page = params[:page] || 1
+    @events = current_user.events.page(page).desc(:created_at)
   end
 
   def show
@@ -30,7 +33,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event }
@@ -39,7 +41,9 @@ class EventsController < ApplicationController
 
 
   def edit
+    redirect_to events_path and return unless user_signed_in?
     @event = Event.find(params[:id])
+    redirect_to events_path and return unless can? :manage, @event
   end
 
   def create
@@ -67,7 +71,9 @@ class EventsController < ApplicationController
 
 
   def update
+    redirect_to events_path and return unless user_signed_in?
     @event = Event.find(params[:id])
+    redirect_to events_path and return unless can? :manage, @event
     param = params[:event].tap { |e|
       e['date'] = Date::civil(e['date(1i)'].to_i, e['date(2i)'].to_i, e['date(3i)'].to_i)
       e.delete("date(1i)")
@@ -88,11 +94,12 @@ class EventsController < ApplicationController
 
 
   def destroy
+    redirect_to events_path and return unless user_signed_in?
     @event = Event.find(params[:id])
+    redirect_to events_path and return unless can? :manage, @event
     @event.destroy
-
     respond_to do |format|
-      format.html { redirect_to events_url }
+      format.html { redirect_to my_events_url, notice: 'Event was successfully deleted.' }
       format.json { head :no_content }
     end
   end
