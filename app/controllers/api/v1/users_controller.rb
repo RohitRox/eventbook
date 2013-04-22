@@ -1,7 +1,8 @@
+require 'ostruct'
 class Api::V1::UsersController <  Api::V1::BaseController
 
-  skip_before_filter :authenticate_user!, only: [:create]
-  skip_before_filter :find_by_auth_token, only: [:create]
+  skip_before_filter :authenticate_user!, only: [:create, :login]
+  skip_before_filter :find_by_auth_token, only: [:create, :login]
 
   respond_to :json
 
@@ -42,6 +43,21 @@ class Api::V1::UsersController <  Api::V1::BaseController
   end
 
   def show
+  end
+
+  def login
+    email = params[:email]
+    password = params[:password]
+    if email.nil? || password.nil?
+       @r_hash = OpenStruct.new({:message=>"The request must contain the user email and password."})
+    end
+    user = User.where(email: email ).first
+    if user && user.valid_password?(password)
+      user.ensure_authentication_token! unless user.authentication_token
+      @r_hash = OpenStruct.new({message: "welcome", token: user.authentication_token })
+    else
+      @r_hash = OpenStruct.new({:message=>"Invalid Email or password."})
+    end
   end
 
 end

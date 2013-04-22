@@ -45,4 +45,7 @@ class User
 
   ## Token authenticatable
   field :authentication_token, :type => String
+
+  before_save :ensure_authentication_token
+
 end

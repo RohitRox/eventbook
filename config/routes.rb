@@ -23,6 +23,9 @@ Eventbook::Application.routes.draw do
           get :tickets
           get :bookings
         end
+        collection do
+          get :login
+        end
       end
     end
   end
