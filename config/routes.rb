@@ -6,7 +6,7 @@ Eventbook::Application.routes.draw do
   resources :users, only: [:show] do
     member do
       get 'edit_profile'
-      put 'update_profile'
+      post 'update_profile'
     end
   end
   namespace :api, defaults: {format: 'json'} do
