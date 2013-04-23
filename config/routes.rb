@@ -31,6 +31,8 @@ Eventbook::Application.routes.draw do
   end
 
   match 'my_events' => 'events#my_events'
+  
+  match '/api/v1/users' => 'api/v1/users#options', :constraints => {:method => 'OPTIONS'}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

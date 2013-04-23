@@ -2,7 +2,6 @@ class Api::V1::BaseController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
   before_filter :find_by_auth_token
-  before_filter :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
   protected
@@ -12,21 +11,9 @@ class Api::V1::BaseController < ApplicationController
     @user = User.where(authentication_token: params[:auth_token]).first
   end
 
-  # For all responses in this controller, return the CORS access control headers.
-
-  def cors_preflight_check
-    if request.method == :options || request.method == "options"
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = 'X-Requested-With'
-      headers['Access-Control-Max-Age'] = '1728000'
-      head :ok
-   end
- end
-
- def cors_set_access_control_headers
+  def cors_set_access_control_headers
    headers['Access-Control-Allow-Origin'] = '*'
    headers['Access-Control-Request-Methods'] = 'POST, GET, OPTIONS'
- end
+  end
 
 end

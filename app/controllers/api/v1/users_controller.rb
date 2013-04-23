@@ -1,10 +1,17 @@
 require 'ostruct'
 class Api::V1::UsersController <  Api::V1::BaseController
 
-  skip_before_filter :authenticate_user!, only: [:create, :login]
-  skip_before_filter :find_by_auth_token, only: [:create, :login]
+  skip_before_filter :authenticate_user!, only: [:create, :login, :options]
+  skip_before_filter :find_by_auth_token, only: [:create, :login, :options]
 
   respond_to :json
+
+  def options
+    headers['Access-Control-Allow-Origin'] = request.env['HTTP_ORIGIN']
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    headers['Access-Control-Max-Age'] = '1000'
+    headers['Access-Control-Allow-Headers'] = '*,x-requested-with'
+  end
 
   def create
     email = params[:email]
