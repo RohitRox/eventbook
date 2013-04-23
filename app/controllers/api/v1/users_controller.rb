@@ -1,8 +1,8 @@
 require 'ostruct'
 class Api::V1::UsersController <  Api::V1::BaseController
 
-  skip_before_filter :authenticate_user!, only: [:create, :login, :options]
-  skip_before_filter :find_by_auth_token, only: [:create, :login, :options]
+  skip_before_filter :authenticate_user!, only: [:create, :login, :options, :sign_up]
+  skip_before_filter :find_by_auth_token, only: [:create, :login, :options, :sign_up]
 
   respond_to :json
 
@@ -61,10 +61,17 @@ class Api::V1::UsersController <  Api::V1::BaseController
     user = User.where(email: email ).first
     if user && user.valid_password?(password)
       user.ensure_authentication_token! unless user.authentication_token
-      @r_hash = OpenStruct.new({message: "welcome", token: user.authentication_token })
+      @r_hash = OpenStruct.new({message: "welcome", token: user.authentication_token, likes: user.likes, profile_pic: user.profile.profile_pic_url })
     else
       @r_hash = OpenStruct.new({:message=>"Invalid Email or password."})
     end
   end
 
+  def sign_up
+    email = params[:email]
+    password = params[:password]
+    interests = params[:interests]
+    @user = User.new(email: email, password: password, password_confirmation: password, likes: interests)
+    @user.save
+  end
 end

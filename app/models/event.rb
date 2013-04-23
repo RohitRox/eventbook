@@ -10,8 +10,8 @@ class Event
   field :entrance, type: String
   field :date, type: Date
   field :time, type: String
+  field :feature_request, type: Boolean, default: false
   field :featured, type: Boolean, default: false
-
   field :address, type: String
   field :locality, type: String
   field :country, type: String
@@ -25,7 +25,7 @@ class Event
   reverse_geocoded_by :coordinates
   geocoded_by :address
 
-  attr_accessible :picture, :event_background, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :coordinates, :style
+  attr_accessible :picture, :event_background, :title, :description, :category, :seats, :entrance, :date, :time, :address, :locality, :country, :venue, :coordinates, :style, :feature_request
 
   mount_uploader :picture, PictureUploader
   mount_uploader :event_background, EventBackgroundUploader
@@ -48,5 +48,9 @@ class Event
                  "Other"
                ]
   ENTRANCE = ["Free","Ticketed","Invitee Only"]
+
+  scope :today, where(date: Date.today)
+  scope :upcoming, where(:date.gte => Date.today)
+  scope :featured, where(featured: true)
 
 end

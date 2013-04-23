@@ -12,6 +12,7 @@ Eventbook::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1, defaults: {format: 'json'}  do
       resources :tokens,:only => [:create, :destroy]
+      resources :home,:only => [:index]
       resources :events do
         member do
           get :book
@@ -25,13 +26,14 @@ Eventbook::Application.routes.draw do
         end
         collection do
           get :login
+          get :sign_up
         end
       end
     end
   end
 
   match 'my_events' => 'events#my_events'
-  
+
   match '/api/v1/users' => 'api/v1/users#options', :constraints => {:method => 'OPTIONS'}
 
   # The priority is based upon order of creation:

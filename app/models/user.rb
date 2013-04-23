@@ -26,6 +26,7 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
   field :admin, type: Boolean, default: false
+  field :likes, type: Array
 
   has_many :events, class_name: 'Event', inverse_of: :organiser
   has_many :bookings
