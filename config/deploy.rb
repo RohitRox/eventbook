@@ -49,6 +49,7 @@ set :bundle_without, [:development, :test]
 
 set :rails_env, "production"
 
+set :shared_children, shared_children + %w{public/uploads}
 #Pre Compile asset on the server
 # load 'deploy/assets'
 # run "cd #{release_path}; rake assets:precompile RAILS_ENV=production "
