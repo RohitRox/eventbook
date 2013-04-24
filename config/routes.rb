@@ -12,7 +12,11 @@ Eventbook::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1, defaults: {format: 'json'}  do
       resources :tokens,:only => [:create, :destroy]
-      resources :home,:only => [:index]
+      resources :home,:only => [:index] do
+        collection do
+          get :get_events
+        end
+      end
       resources :events do
         member do
           get :book
@@ -90,6 +94,7 @@ Eventbook::Application.routes.draw do
   match 'about_us' => 'home#about_us'
   match 'how_it_works' => 'home#how_it_works'
   match 'contact' => 'home#contact'
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
