@@ -24,6 +24,7 @@ Eventbook::Application.routes.draw do
       resources :home,:only => [:index]
       resources :events do
         member do
+          get :cancel_booking
           get :book
           get :geocode
         end

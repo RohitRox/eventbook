@@ -1,6 +1,7 @@
 class Booking
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Stateflow
 
   belongs_to :user
   belongs_to :event

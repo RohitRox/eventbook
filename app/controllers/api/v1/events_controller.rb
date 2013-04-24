@@ -13,6 +13,12 @@ class Api::V1::EventsController < Api::V1::BaseController
     @event = Event.find(params[:id])
   end
 
+  def cancel_booking
+    event = Event.find(params[:id])
+    booking = @user.bookings.where(event: event).first
+    booking.cancel! if booking.present?
+  end
+
   def book
     event = Event.find(params[:id])
     booking = @user.bookings.new(event: event)
