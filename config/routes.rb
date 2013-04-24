@@ -87,6 +87,9 @@ Eventbook::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'home#index'
 
+  match 'about_us' => 'home#about_us'
+  match 'how_it_works' => 'home#how_it_works'
+  match 'contact' => 'home#contact'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

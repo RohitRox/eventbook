@@ -10,7 +10,7 @@
 
 
 body {
-    background: #fff;
+    background: #D4D2DB url(/assets/bg.jpg) no-repeat center top;
     text-align: center;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     color: #888;
@@ -40,7 +40,6 @@ strong { font-weight: bold; }
 }
 
 .header .navbar-inner {
-    background: #fff;
     border: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -62,16 +61,15 @@ strong { font-weight: bold; }
     width: 280px;
     height: 63px;
     padding: 30px 0;
-    background: url(/assets/logo.png) 20px center no-repeat;
+    background: url(/assets/eb_logo.png) 20px center no-repeat;
 }
 
 .header ul.nav {
     font-size: 14px;
-    text-transform: uppercase;
 }
 
 .header ul.nav li a {
-    color: #5d5d5d;
+    color: #b1a7c0;
     text-shadow: none;
 }
 
@@ -80,24 +78,25 @@ strong { font-weight: bold; }
 }
 
 .header ul.nav .dropdown-menu li:hover a{
-    color: #fff;
+    color: rgba(255,255,255,.8);
 }
 
 .dropdown:hover ul{
     display: block;
 }
 
-.header ul.nav li.current-page a {
-    padding-top: 5px;
-    border-top: 5px solid #218EAE;
-    background: #f8f8f8;
+.header ul.nav li a, .header ul.nav li{
+    border-radius: 4px;
+    margin: 0px 2px;
 }
-
 .header ul.nav li:hover {
     color: #fff;
     background: #f8f8f8;
 }
-
+.header ul.nav li.current-page a {
+    background:  rgba(255,255,255,.7);
+    color: #333;
+}
 .header ul.nav li a i {
     line-height: 35px;
     color: #aaa;
@@ -105,7 +104,7 @@ strong { font-weight: bold; }
 
 .header ul.nav li a:hover i { color: #333; }
 
-.header ul.nav li.current-page a:hover i{ color: #333 }
+.header ul.nav li.current-page a:hover i, .header ul.nav li.current-page a i{ color: #333 }
 
 /* ----- Slider ----- */
 
@@ -184,7 +183,6 @@ strong { font-weight: bold; }
 .what-we-do .service {
     padding-bottom: 23px;
     background: #f8f8f8;
-    border-bottom: 2px solid #218EAE;
     border-radius: 4px;
     box-shadow: 0px 0px 4px #ccc;
 }
@@ -202,7 +200,7 @@ strong { font-weight: bold; }
 
 .what-we-do .service .icon-awesome {
     margin-top: 25px;
-    font-size: 50px;
+    font-size: 23px;
     line-height: 50px;
     color: #5d5d5d;
 }

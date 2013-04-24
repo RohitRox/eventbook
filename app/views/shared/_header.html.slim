@@ -1,8 +1,8 @@
-.container
+.container.nav-container
   .header.row
     .span12
       .navbar
-        .navbar-inner
+        .navbar-inner.main-nav
           a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
             span.icon-bar
             span.icon-bar
@@ -11,34 +11,30 @@
             a.brand href="/"
           .nav-collapse.collapse
             ul.nav.pull-right
-              li.current-page
+              li class=('current-page' if controller_name == 'home' && action_name=='index')
                 a href="/"
                   i.icon-home
-                  br Home
-              li.dropdown
+                  br HOME
+              li.dropdown class=('current-page' if controller_name == 'events')
                 a href="/events"
                   i.icon-star
-                  br Events
+                  br EVENTS
                 ul.dropdown-menu
                   -Event::CATEGORIES.each do |cat|
                     li
                       =link_to cat, "/events?category=#{cat}"
-              li
-                a href="#"
+              li class=('current-page' if action_name =='how_it_works')
+                a href="/how_it_works"
                   i.icon-comments
-                  br How It Works
-              li
-                a href="services.html"
-                  i.icon-tasks
-                  br Pricing
-              li
-                a href="about.html"
+                  br HOW IT WORKS
+              li class=('current-page' if action_name =='about_us')
+                a href="/about_us"
                   i.icon-user
-                  br About Us
-              li
-                a href="contact.html"
+                  br ABOUT US
+              li class=('current-page' if action_name =='contact')
+                a href="/contact"
                   i.icon-envelope-alt
-                  br Contact
+                  br CONTACT
 .container.below-bar
   .row
     .span9

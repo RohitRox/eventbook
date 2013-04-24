@@ -1,12 +1,18 @@
 h1,h2
-  font-family: 'Lobster', cursive
+  font-family: Georgia
 .main
   text-align: left
   padding-top: 20px
   min-height: 240px
+  margin-bottom: 20px
 .container
   padding: 1%
-  background: rgba(255,255,255,.9)
+  background: #fff
+  box-shadow: 0px 1px 2px rgba(0,0,0,.8)
+.container.nav-container
+  background: none
+.container.footer, .container.nav-container
+  box-shadow: none
 .main.container
   padding-bottom: 20px
 .flash-wrap
@@ -17,6 +23,7 @@ h1,h2
   padding: 8px
 .below-bar
   background: #eee
+  border-radius: 4px
   form
     margin: 0
   .input-append
@@ -45,8 +52,11 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     min-height: 130px
 .pin-event
   padding: 6px
-  background: #f1f1f1
-  box-shadow: 0px 1px 2px #666
+  border-top: 1px solid #eee
+  border-right: 1px solid #ccc
+  background: #f8f8f8
+  border-radius: 2px
+  box-shadow: 0px 1px 1px rgba(110,110,110,.8)
   .event-title
     font-size: 16px
 .profile
@@ -68,3 +78,15 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
   input, label
     float: left
     margin-right: 5px
+.main-nav.navbar-inner
+  background: none
+.dropdown-menu > li > a
+  padding: 5px 20px
+.header ul.nav ul.dropdown-menu a
+  color: #666
+ul.styled
+  li
+    font-size: 14px
+    line-height: 26px
+.what-we-do, .portfolio
+  text-align: center

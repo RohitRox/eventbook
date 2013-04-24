@@ -6,4 +6,16 @@ class HomeController < ApplicationController
     redirect_to events_path and return if current_user
   end
 
+  def about_us
+
+  end
+
+  def contact
+
+  end
+
+  def how_it_works
+
+  end
+
 end
