@@ -32,7 +32,6 @@ class User
   has_many :bookings
   has_many :tickets
   has_one :profile, autobuild: true
-
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time

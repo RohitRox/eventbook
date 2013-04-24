@@ -1,0 +1,6 @@
+= form_for @survey, url: event_survey_path(@event) do |g|
+	= g.fields_for :questions, @questions do |f|
+		= f.label :statement, "Enter your Question"
+		= f.text_field :statement
+		br
+	= g.submit "Done"

@@ -1,0 +1,6 @@
+- @survey.questions.each do |question|
+ = question.statement
+ br
+ - Question::MOODS.each do |mood|
+ 	= "#{mood.to_s.humanize} : #{question.send(mood)} | "
+ br

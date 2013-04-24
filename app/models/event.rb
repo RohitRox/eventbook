@@ -2,7 +2,11 @@ class Event
   include Mongoid::Document
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
+  
+  # acts_as_taggable
+  # acts_as_taggable_on :tags
 
+  field :tags, type: String
   field :title, type: String
   field :description, type: String
   field :category, type: String
@@ -32,7 +36,8 @@ class Event
 
   belongs_to :organiser, class_name: 'User'
   has_many :bookings
-
+  has_one :survey
+  
   validates_presence_of :title
 
   CATEGORIES = [ "Parties",

@@ -1,0 +1,13 @@
+= form_for @survey, url: event_survey_path(@event) do |g|
+	= g.fields_for :questions, @questions do |f|
+			= f.label :answering, f.object.statement
+			= f.radio_button :answering, 'great'
+			= f.label :answering, 'Great', value: 'great'
+			= f.radio_button :answering, 'good'
+			= f.label :answering, 'Good', value: 'good'
+			= f.radio_button :answering, 'fair'
+			= f.label :answering, 'Fair', value: 'fair'
+			= f.radio_button :answering, 'unsatisfactory'
+			= f.label :answering, 'Unsatisfactory', value: 'unsatisfactory'
+			br
+	= g.submit "Done"

@@ -1,7 +1,16 @@
 Eventbook::Application.routes.draw do
   devise_for :users
 
+    # match 'events/:id/survey/new' => 'surveys#new'
+
   resources :events
+  resources :events do
+    resource :survey do
+      get 'answer', on: :member
+      get 'respond_with_mood', on: :member
+
+    end
+  end
   # match '/api/events' => 'api#surecompany', :via => [:get]
   resources :users, only: [:show] do
     member do
@@ -35,12 +44,11 @@ Eventbook::Application.routes.draw do
   match 'my_events' => 'events#my_events'
 
   match '/api/v1/users' => 'api/v1/users#options', :constraints => {:method => 'OPTIONS'}
-
+  match '/event_tags' => "events#event_tags"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
