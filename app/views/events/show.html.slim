@@ -2,7 +2,11 @@ script src="http://maps.google.com/maps/api/js?sensor=false"
 
 h1
   = @event.title
-
+h1
+  - if @event.survey
+    = link_to "Show Survey Results", event_survey_path(@event)
+  - else
+    = link_to "Create a Survey", new_event_survey_path(@event)
 .row-fluid
   .span3
     a.thumbnail href=@event.picture_url

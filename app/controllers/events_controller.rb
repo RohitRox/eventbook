@@ -17,6 +17,10 @@ class EventsController < ApplicationController
     @events = current_user.events.page(page).desc(:created_at)
   end
 
+  def event_tags
+    render json: [{id: 1, name: "hello"}]
+  end
+
   def show
     @event = Event.find(params[:id])
     @bookings = @event.bookings.size
@@ -47,6 +51,10 @@ class EventsController < ApplicationController
   end
 
   def create
+    #     tag_ids = params[:q]
+    # # tag_ids.split(",").each do |id|
+    #   Tag.find(id)
+    # #end
     param = params[:event].tap { |e|
       e['date'] = Date::civil(e['date(1i)'].to_i, e['date(2i)'].to_i, e['date(3i)'].to_i)
       e.delete("date(1i)")

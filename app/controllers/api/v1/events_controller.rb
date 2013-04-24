@@ -13,6 +13,12 @@ class Api::V1::EventsController < Api::V1::BaseController
     @event = Event.find(params[:id])
   end
 
+  def cancel_booking
+    event = Event.find(params[:id])
+    booking = @user.bookings.where(event: event).first
+    booking.cancel! if booking.present?
+  end
+
   def book
     event = Event.find(params[:id])
     booking = @user.bookings.new(event: event)
@@ -22,8 +28,7 @@ class Api::V1::EventsController < Api::V1::BaseController
       ticket = booking.tickets.create(user: @user)
       ticket_arr << { ticket: ticket.id.to_s }
     end
-    #@event = Struct.new(:title,:tickets).new(event.title,ticket_arr)
-    render json: {
+    @booking_hash = OpenStruct.new({
                     booking_id: booking.id.to_s,
                     event: event.title,
                     t_qty: ticket_arr.size,
@@ -31,7 +36,9 @@ class Api::V1::EventsController < Api::V1::BaseController
                     datetime: "#{event.date} #{event.time}",
                     longt: event.coordinates.first,
                     latt: event.coordinates.last
-                  }
+                  })
+    #@event = Struct.new(:title,:tickets).new(event.title,ticket_arr)
+    # render json: 
   end
 
   def geocode
