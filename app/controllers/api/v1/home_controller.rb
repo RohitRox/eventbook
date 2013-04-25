@@ -24,7 +24,7 @@ class Api::V1::HomeController <  Api::V1::BaseController
       when "upcoming"
         @events = @events.upcoming.page(page).desc(:created_at)
       when "near_by"
-        @events = @events.near([params[:latt],params[:longt]], 1).page(page).desc(:created_at)
+        @events = params[:latt].present? ? Event.near([params[:latt].to_f,params[:longt].to_f], 1).page(page).desc(:created_at) : @events.page(page).desc(:created_at)
       when "featured"
         @events = @events.featured.page(page).desc(:created_at)
       when "interest"
