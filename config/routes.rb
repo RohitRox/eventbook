@@ -33,6 +33,11 @@ Eventbook::Application.routes.draw do
           get :geocode
         end
       end
+      resources :bookings do
+        member do
+          get :admit
+        end
+      end
       resources :users do
         member do
           get :tickets

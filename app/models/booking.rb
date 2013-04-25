@@ -24,7 +24,7 @@ class Booking
 
     initial :booked
 
-    state :booked, :cancelled, :admitted, :expired
+    state :booked, :cancelled, :attended, :expired
 
     event :cancel do
       transitions :from => :booked, :to => :cancelled
