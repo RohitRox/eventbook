@@ -1,4 +1,5 @@
 Eventbook::Application.routes.draw do
+  apipie
   devise_for :users
 
     # match 'events/:id/survey/new' => 'surveys#new'

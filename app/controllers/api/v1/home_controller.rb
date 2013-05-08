@@ -5,6 +5,9 @@ class Api::V1::HomeController <  Api::V1::BaseController
   #skip_before_filter :authenticate_user!, only: [:index]
   respond_to :json
 
+
+  api :GET, '/api/v1/home/get_events', 'get events counts for mobile home screen'
+  param :auth_token, String, :desc => "user auth token", :required => true
   def index
     @r_hash = OpenStruct.new({message: "We could could find you. Please login."}) and return unless @user
     near_by_count = params[:latt].present? ? Event.near([params[:latt],params[:longt]], 5).size : 0

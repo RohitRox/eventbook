@@ -28,9 +28,13 @@ gem 'stateflow'
 gem 'rabl'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
+
 group :development do
   gem 'pry-rails'
+  gem 'sextant'
+  gem 'apipie-rails'
 end
+
   gem 'ffaker'
 
 # Gems used only for assets and not required
